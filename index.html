@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ZELDA BETA</title>
+
+</head>
+<body>
+<canvas id="myCanvas" width=240 height=160 style="background:url('image/map/SPOILER_beta_dungon.png');border:1px solid"></canvas> 
+
+<img id="link-up-1" src="image/link/link_up/frame_000.gif" style="display: none;"/>
+<img id="link-up-2" src="image/link/link_up/frame_001.gif" style="display: none;"/>
+<img id="link-down-1" src="image/link/link_down/frame_000.gif" style="display: none;"/>
+<img id="link-down-2" src="image/link/link_down/frame_001.gif" style="display: none;"/>
+<img id="link-left-1" src="image/link/link_left/frame_000.gif" style="display: none;"/>
+<img id="link-left-2" src="image/link/link_left/frame_001.gif" style="display: none;"/>
+<img id="link-right-1" src="image/link/link_right/frame_000.gif" style="display: none;"/>
+<img id="link-right-2" src="image/link/link_right/frame_001.gif" style="display: none;"/>
+<img id="sword_down" src="image/link/sword_down.png" style="display: none;"/>
+
+<script> 
+	
+var ctx = myCanvas.getContext("2d");
+
+var link_x = 120;
+var link_y = 70;
+
+
+
+var linkImgLeft = document.getElementById("link-left-1");
+
+var linkImgUp = document.getElementById("link-up-1");
+
+var linkImgRight = document.getElementById("link-right-1");
+
+var linkImgDown = document.getElementById("link-down-1");
+
+var walk = linkImgDown;
+/*
+function walk () {
+ if (walk === 1) {                Old code trying to use animations 
+  1 = linkImgLeft;
+ }
+}
+
+*/
+function frame () {
+ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
+ctx.drawImage(walk, link_x, link_y); {}
+}
+
+setInterval(frame, 33);
+
+function MyKeyLeftHandler (MyEvent) { 
+  if (MyEvent.keyCode == 37 && link_x > 0) {link_x = link_x - 8, walk = document.getElementById("link-left-1");}  //left
+  }
+
+
+addEventListener("keydown", MyKeyLeftHandler); 
+
+function MyKeyUpHandler (MyEvent) { 
+  if (MyEvent.keyCode == 38 && link_y > 0) {link_y = link_y - 8, walk = document.getElementById("link-up-1");}  //up 
+  }
+
+addEventListener("keydown", MyKeyUpHandler); 
+
+function MyKeyRightHandler (MyEvent) { 
+  if (MyEvent.keyCode == 39 && link_x + walk.width < myCanvas.width) {link_x = link_x + 8, walk = document.getElementById("link-right-1");} //right
+  }
+
+addEventListener("keydown", MyKeyRightHandler); 
+
+function MyKeyDownHandler (MyEvent) { 
+  if (MyEvent.keyCode == 40 && link_y + walk.height < myCanvas.height) {link_y = link_y + 8, walk = document.getElementById("link-down-1");}  //down
+  }
+
+addEventListener("keydown", MyKeyDownHandler); 
+
+function Attack (MyEvent) { 
+  if (MyEvent.keyCode == 32) {walk = document.getElementById("sword_down");}  //down
+  }
+
+addEventListener("keydown", Attack); 
+</script>
+</body>
+</html>
